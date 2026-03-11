@@ -1,0 +1,1020 @@
+html {
+    font-size: 16px;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    font-size: 1rem;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -80px;
+    padding: 0 0 80px;
+}
+
+.wrap > .container {
+    padding: 90px 15px 30px;
+}
+
+/* Навигация */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    background-color: #2c3e50 !important;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-logo {
+    font-size: 1.5rem;
+}
+
+.navbar-brand-text {
+    font-size: 1.25rem;
+}
+
+/* Выпадающий список периода статистики по центру */
+.navbar-center-period {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.statistics-period-select {
+    min-width: 120px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.statistics-period-select:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+.statistics-period-select option {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #3498db !important;
+}
+
+.navbar-nav .logout {
+    border: none;
+    background: none;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav .logout:hover {
+    color: #3498db !important;
+    background: none;
+}
+
+/* Dropdown меню */
+.navbar-nav .dropdown-menu {
+    background-color: #2c3e50;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-nav .dropdown-item {
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.navbar-nav .dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Главная страница */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0;
+    margin: -90px -15px 0 -15px;
+    border-radius: 0 0 20px 20px;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section h1 {
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero-section .lead {
+    font-size: 1.25rem;
+    opacity: 0.95;
+}
+
+/* Карточки */
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15) !important;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-wrapper svg {
+    transition: transform 0.3s ease;
+}
+
+.hover-card:hover .icon-wrapper svg {
+    transform: scale(1.1);
+}
+
+.page-header {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.page-header h1 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0.75rem 0;
+    margin-bottom: 1rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    color: #495057;
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+    font-weight: 300;
+}
+
+.breadcrumb-item a {
+    color: #495057;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 400;
+}
+
+.breadcrumb-item a:hover {
+    color: #212529;
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: #212529;
+    font-weight: 500;
+}
+
+/* Статистика */
+.statistics-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.statistics-card:hover {
+    transform: translateY(-2px);
+}
+
+.statistics-card .card-header {
+    position: relative;
+}
+
+.statistics-toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 4px;
+    transition: all 0.3s ease;
+    z-index: 10;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.statistics-toggle-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.statistics-toggle-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.statistics-content {
+    position: relative;
+    transition: filter 0.4s ease;
+}
+
+.statistics-content.blurred {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.statistics-content.blurred .statistics-tabs .nav-link {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.statistics-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 0 0 8px 8px;
+    z-index: 5;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+}
+
+.statistics-blur.active {
+    display: flex;
+}
+
+.statistics-blur::before {
+    content: 'Нажмите, чтобы увидеть статистику';
+    color: rgba(102, 126, 234, 0.8);
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Вкладки статистики */
+.statistics-tabs {
+    border-bottom: 2px solid #e9ecef;
+    display: flex;
+    width: 100%;
+}
+
+.statistics-tabs .nav-item {
+    flex: 1;
+    text-align: center;
+}
+
+.statistics-tabs .nav-link {
+    color: #6c757d;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.statistics-tabs .nav-link:hover {
+    color: #495057;
+    border-bottom-color: #dee2e6;
+}
+
+.statistics-tabs .nav-link.active {
+    color: #0d6efd;
+    border-bottom-color: #0d6efd;
+    background-color: transparent;
+}
+
+.statistics-tabs .nav-link:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Гистограммы */
+.statistics-chart-wrapper {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 1rem 0 2rem 0;
+    padding-left: 4rem;
+    min-height: 300px;
+}
+
+.chart-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 80px;
+    gap: 0.25rem;
+    position: relative;
+    height: 100%;
+    z-index: 3;
+}
+
+.chart-bar-group:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+}
+
+
+.chart-bars-container {
+    display: flex;
+    gap: 2px;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+}
+
+.chart-bar {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    flex: 1;
+    background-color: transparent;
+    /* Убираем min-height, чтобы высота определялась только через inline style */
+    min-height: 0 !important;
+    /* Используем flex-basis для установки высоты */
+    flex-basis: auto;
+    align-self: flex-end;
+}
+
+.chart-bar:hover {
+    opacity: 0.8;
+    transform: scaleY(1.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.chart-bar::after {
+    content: attr(data-value);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.chart-bar:hover::after {
+    opacity: 1;
+}
+
+.chart-label {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #6c757d;
+    text-align: center;
+    word-break: break-word;
+    min-height: 1.2rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+
+/* Горизонтальные пунктирные линии сетки */
+.chart-grid-line {
+    position: absolute;
+    right: 0;
+    height: 1px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    z-index: 1;
+    /* left будет задан динамически через JS для учета padding-left */
+}
+
+/* Подписи значений слева */
+.chart-y-label {
+    position: absolute;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    color: #6c757d;
+    font-weight: 500;
+    white-space: nowrap;
+    padding-right: 0.5rem;
+    text-align: right;
+    width: 3.5rem;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Легенда */
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #dee2e6;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.legend-color.legend-earnings {
+    background: linear-gradient(135deg, #28a745, #5cb85c);
+}
+
+.legend-color.legend-expenses {
+    background: linear-gradient(135deg, #dc3545, #e74c3c);
+}
+
+.legend-color.legend-investments {
+    background: linear-gradient(135deg, #007bff, #3498db);
+}
+
+.legend-color.legend-debts {
+    background: linear-gradient(135deg, #ffc107, #f39c12);
+}
+
+/* Цвета для категорий */
+.chart-bar.bar-earnings {
+    background: linear-gradient(to top, #28a745, #5cb85c);
+}
+
+.chart-bar.bar-expenses {
+    background: linear-gradient(to top, #dc3545, #e74c3c);
+}
+
+.chart-bar.bar-investments {
+    background: linear-gradient(to top, #007bff, #3498db);
+}
+
+.chart-bar.bar-debts {
+    background: linear-gradient(to top, #ffc107, #f39c12);
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px;
+        min-height: 250px;
+    }
+    
+    .chart-legend {
+        gap: 1rem;
+    }
+    
+    .chart-bar-group {
+        max-width: 60px;
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+.footer a {
+    color: #ecf0f1;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #3498db;
+}
+
+.footer .list-inline-item {
+    margin: 0 10px;
+}
+
+/* Общие стили */
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+.add-entry {
+    margin: 20px 0;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 15px 20px;
+    margin: 0 0 20px 0;
+    border-radius: 4px;
+}
+
+/* Блоки главной страницы */
+.balance-block {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.balance-block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+.balance-change {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.balance-change span {
+    margin-right: 0.5rem;
+}
+
+/* Карточки счетов */
+.account-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.account-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+.account-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    color: white;
+}
+
+.account-balance {
+    margin-top: 1rem;
+}
+
+/* Блоки доходов/расходов */
+.income-card, .expense-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.income-card:hover, .expense-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+.income-icon, .expense-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(40, 167, 69, 0.1);
+}
+
+.expense-icon {
+    background: rgba(220, 53, 69, 0.1);
+}
+
+/* Механика блюра для всех блоков */
+.blur-block {
+    position: relative;
+    overflow: hidden;
+}
+
+.blur-content {
+    position: relative;
+    transition: filter 0.4s ease;
+    z-index: 1;
+}
+
+.blur-content.blurred {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 2;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+}
+
+.blur-overlay.active {
+    display: flex;
+}
+
+.blur-overlay::before {
+    content: 'Нажмите, чтобы увидеть данные';
+    color: rgba(102, 126, 234, 0.8);
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Кнопка активации блюра */
+.blur-toggle-btn-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.blur-toggle-btn {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.blur-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Stretched link для кликабельности блоков */
+.stretched-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    text-decoration: none;
+}
+
+.col-form-label {
+    font-weight: normal;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 0;
+        margin: -70px -15px 0 -15px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .wrap > .container {
+        padding: 80px 15px 20px;
+    }
+    
+    .navbar-center-period {
+        position: static;
+        transform: none;
+        margin: 0.5rem 0;
+        width: 100%;
+    }
+    
+    .statistics-period-select {
+        width: 100%;
+    }
+    
+    .blur-toggle-btn-container {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* ============================================
+   ИСПРАВЛЕНИЕ: body имеет font-size: 10px
+   Устанавливаем нормальный размер для body
+   Используем более специфичный селектор для гарантии переопределения
+   Без !important, чтобы можно было переопределить при необходимости
+   ============================================ */
+html body {
+    font-size: 1rem;
+}
+
+/* ============================================
+   Исправление проблем с виджетами Kartik
+   ============================================ */
+
+/* Исправление отступов для form-group */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Исправление смещения иконок в Kartik DatePicker */
+.input-group.date .input-group-addon,
+.input-group.date .input-group-text {
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    border-left: 0;
+}
+
+.input-group.date .input-group-addon i,
+.input-group.date .input-group-text i {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Унификация высоты всех полей формы */
+/* Используем фиксированную высоту вместо calc с em, чтобы избежать проблем с font-size */
+/* Применяем с !important для переопределения стилей Bootstrap */
+/* Глобальные стили для всех форм */
+.form-control:not(textarea),
+.form-select,
+select.form-control:not(textarea),
+input[type="text"].form-control,
+input[type="email"].form-control,
+input[type="password"].form-control,
+input[type="number"].form-control,
+input.form-control:not(textarea),
+select.form-control,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select:not([multiple]) {
+    height: 38px !important;
+    min-height: 38px !important;
+    line-height: 1.5 !important;
+    padding: 0.375rem 0.75rem !important;
+    box-sizing: border-box !important;
+    font-size: 0.875rem !important;
+}
+
+/* Textarea не должна иметь фиксированную высоту */
+textarea.form-control,
+textarea {
+    min-height: 38px !important;
+    line-height: 1.5 !important;
+    padding: 0.375rem 0.75rem !important;
+    box-sizing: border-box !important;
+    font-size: 0.875rem !important;
+}
+
+/* Исправление размеров и выравнивания для kv-date-picker и kv-date-remove */
+.input-group-addon.kv-date-picker,
+.input-group-addon.kv-date-remove,
+.input-group-text.kv-date-picker,
+.input-group-text.kv-date-remove {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    padding: 0.375rem 0.5rem !important;
+    border-top: 1px solid #ced4da !important;
+    border-bottom: 1px solid #ced4da !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    line-height: 1.5 !important;
+    background-color: #e9ecef !important;
+    vertical-align: middle !important;
+    flex-shrink: 0 !important;
+    width: auto !important;
+    min-width: auto !important;
+}
+
+.input-group-addon.kv-date-picker i,
+.input-group-addon.kv-date-remove i,
+.input-group-text.kv-date-picker i,
+.input-group-text.kv-date-remove i {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    vertical-align: middle;
+    width: auto;
+    height: auto;
+}
+
+/* Выравнивание элементов input-group */
+.input-group {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+
+.input-group .form-control {
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+}
+
+/* Ограничение ширины элементов input-group-addon */
+.input-group-addon,
+.input-group-text {
+    flex-shrink: 0;
+    width: auto;
+}
+
+/* Убираем лишние border для первого и последнего элемента в input-group */
+.input-group > .form-control:first-child + .input-group-addon.kv-date-picker,
+.input-group > .form-control:first-child + .input-group-text.kv-date-picker {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group > .input-group-addon.kv-date-remove:last-child,
+.input-group > .input-group-text.kv-date-remove:last-child {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+    border-right: 1px solid #ced4da;
+}
+
+/* Исправление смещения иконок в Kartik Select2 */
+.select2-container--krajee .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+    right: 1px;
+    top: 0;
+}
+
+.select2-container--krajee .select2-selection--single .select2-selection__clear {
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+}
+
+/* Исправление отступов для полей в горизонтальных формах */
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Исправление отступов для checkbox */
+.form-horizontal .checkbox {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+}
+
+.form-horizontal .checkbox label {
+    padding-left: 0;
+    font-weight: normal;
+}
+
+/* Исправление отступов для полей категории и других dropdown */
+.form-horizontal .form-group select.form-control {
+    margin-top: 0;
+}
+
+/* Исправление отступов для полей даты и времени */
+.field-earnings-datetime .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.field-earnings-datetime .row > div {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Исправление отступов для help-block */
+.help-block {
+    margin-top: 5px;
+    margin-bottom: 0;
+    color: #dc3545;
+}
+
+/* Исправление отступов для Select2 в формах */
+.select2-container {
+    width: 100% !important;
+}
+
+.select2-container--krajee .select2-selection {
+    min-height: 38px !important;
+    height: 38px !important;
+    border: 1px solid #ced4da !important;
+    box-sizing: border-box !important;
+}
+
+.select2-container--krajee .select2-selection--single {
+    height: 38px !important;
+    min-height: 38px !important;
+}
+
+.select2-container--krajee .select2-selection--single .select2-selection__rendered {
+    line-height: 36px !important;
+    padding-left: 0.75rem !important;
+    padding-right: 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+}

@@ -1,0 +1,22 @@
+# Yii2
+/vendor/
+/runtime/
+/web/assets/
+/web/index-test.php
+
+# Environment
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml

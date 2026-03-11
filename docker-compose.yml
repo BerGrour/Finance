@@ -1,0 +1,59 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finance_web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - YII_ENV=${YII_ENV:-dev}
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME:-finance}
+      - DB_USER=${DB_USER:-finance_user}
+      - DB_PASSWORD=${DB_PASSWORD:-finance_pass}
+    networks:
+      - finance_network
+
+  db:
+    image: mysql:8.0
+    container_name: finance_db
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root_password}
+      - MYSQL_DATABASE=${DB_NAME:-finance}
+      - MYSQL_USER=${DB_USER:-finance_user}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-finance_pass}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - finance_network
+    command: --default-authentication-plugin=mysql_native_password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: finance_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_USER=${DB_USER:-finance_user}
+      - PMA_PASSWORD=${DB_PASSWORD:-finance_pass}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root_password}
+    depends_on:
+      - db
+    networks:
+      - finance_network
+
+volumes:
+  db_data:
+
+networks:
+  finance_network:
+    driver: bridge
