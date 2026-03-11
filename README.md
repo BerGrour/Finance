@@ -37,7 +37,7 @@
 - **Thin controllers** — all business logic lives in models and services
 - **ActiveRecord with custom Query classes** — `UserQuery`, `AccountQuery`, etc.
 - **Reusable traits** — `SoftDeleteTrait`, `UserTrackingTrait` shared across models
-- **JS module pattern** — every script is an IIFE with public API, `init()`, `reinitialize()`, and PJAX support
+- **JS module pattern** — every script is an IIFE with public API, `init()`, `reinitialize()`, and PJAX support. See [JS_README.md](JS_README.md) for full js-module guide
 - **Strict MVC** — no business logic in views, no fat controllers
 - **PSR-12** compliant codebase
 
@@ -104,7 +104,7 @@ See [INSTALL.md](INSTALL.md) for full setup guide.
 - **Тонкие контроллеры** — вся бизнес-логика в моделях и сервисах
 - **ActiveRecord с кастомными Query-классами** — `UserQuery`, `AccountQuery` и т.д.
 - **Переиспользуемые трейты** — `SoftDeleteTrait`, `UserTrackingTrait` для нескольких моделей
-- **JS-модульный паттерн** — каждый скрипт является IIFE с публичным API, `init()`, `reinitialize()` и поддержкой PJAX
+- **JS-модульный паттерн** — каждый скрипт является IIFE с публичным API, `init()`, `reinitialize()` и поддержкой PJAX. Полное руководство по модульному JS: [JS_README.md](JS_README.md)
 - **Строгий MVC** — никакой бизнес-логики во views, никаких жирных контроллеров
 - **PSR-12** — стандарт оформления кода соблюдён
 
