@@ -8,7 +8,7 @@
 
 <a name="english"></a>
 
-# Finance — Personal Finance Manager
+# Finance — Personal Finance Manager (In development)
 
 > A production-ready web application for tracking income, expenses, transfers, and investments, built on **Yii2 + PHP 8.2 + MySQL**, containerized with Docker.
 
@@ -75,7 +75,7 @@ See [INSTALL.md](INSTALL.md) for full setup guide.
 
 <a name="русский"></a>
 
-# Finance — Менеджер личных финансов
+# Finance — Менеджер личных финансов (В разработке)
 
 > Готовое к продакшену веб-приложение для учёта доходов, расходов, переводов и инвестиций на базе **Yii2 + PHP 8.2 + MySQL**, контейнеризованное в Docker.
 
