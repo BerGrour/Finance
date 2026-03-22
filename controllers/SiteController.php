@@ -13,6 +13,7 @@ use app\models\SignupForm;
 use app\models\Account\Account;
 use app\models\Earnings\Earnings;
 use app\models\Expenses\Expenses;
+use app\models\User\UserPreferences;
 
 /**
  * Контроллер для главной страницы и основных действий сайта
@@ -27,10 +28,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
+                'only' => ['logout', 'settings', 'save-theme'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'settings', 'save-theme'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -39,7 +40,8 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout'     => ['post'],
+                    'save-theme' => ['post'],
                 ],
             ],
         ];
@@ -331,24 +333,48 @@ class SiteController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['login']);
         }
-        
-        $this->title = 'Профиль';
+
         return $this->render('profile');
     }
 
     /**
-     * Страница настроек (заглушка)
+     * Страница настроек пользователя
      *
-     * @return Response|string
+     * @return string
      */
-    public function actionSettings()
+    public function actionSettings(): string
     {
-        if (Yii::$app->user->isGuest) {
-            return $this->redirect(['login']);
-        }
-        
-        $this->title = 'Настройки';
-        return $this->render('settings');
+        $prefs = UserPreferences::findOrCreate(Yii::$app->user->id);
+
+        return $this->render('settings', [
+            'prefs' => $prefs,
+        ]);
     }
-    
+
+    /**
+     * AJAX: сохранение темы оформления
+     *
+     * @return array{success: bool, message?: string}
+     */
+    public function actionSaveTheme(): array
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $theme = Yii::$app->request->post('theme', '');
+
+        if (!in_array($theme, [UserPreferences::THEME_LIGHT, UserPreferences::THEME_DARK], true)) {
+            Yii::$app->response->statusCode = 422;
+            return ['success' => false, 'message' => 'Недопустимое значение темы.'];
+        }
+
+        $prefs = UserPreferences::findOrCreate(Yii::$app->user->id);
+
+        if (!$prefs->setTheme($theme)) {
+            Yii::error('Не удалось сохранить тему для user_id=' . Yii::$app->user->id, __METHOD__);
+            Yii::$app->response->statusCode = 500;
+            return ['success' => false, 'message' => 'Ошибка сохранения настроек.'];
+        }
+
+        return ['success' => true];
+    }
 }

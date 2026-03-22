@@ -6,12 +6,17 @@ use yii\bootstrap5\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\User\User;
+use app\models\User\UserPreferences;
 
 AppAsset::register($this);
+
+$currentTheme = !Yii::$app->user->isGuest
+    ? UserPreferences::findOrCreate(Yii::$app->user->id)->theme
+    : UserPreferences::THEME_LIGHT;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="<?= Yii::$app->language ?>" data-theme="<?= Html::encode($currentTheme) ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
