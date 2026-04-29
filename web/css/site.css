@@ -2,9 +2,12 @@
    CSS-переменные: светлая тема (по умолчанию)
    ============================================ */
 :root {
+    /* Единый нейтральный серый: плейсхолдеры, подсказки, Kartik, .text-muted */
+    --neutral-gray: #6b7280;
+
     --body-bg: #f8f9fa;
     --body-color: #212529;
-    --body-muted: #6c757d;
+    --body-muted: var(--neutral-gray);
 
     --card-bg: #ffffff;
     --card-border: rgba(0, 0, 0, 0.125);
@@ -14,6 +17,7 @@
 
     --navbar-bg: #2c3e50;
     --navbar-dropdown-bg: #2c3e50;
+    --navbar-hover-color: #3498db;
 
     --footer-bg: #2c3e50;
     --footer-color: #ecf0f1;
@@ -27,13 +31,18 @@
     --input-border: #ced4da;
     --input-addon-bg: #e9ecef;
 
+    --action-color: #4b5563;
+    --action-hover-color: #111827;
+    --action-hover-bg: rgba(75, 85, 99, 0.1);
+    --action-focus-ring: rgba(75, 85, 99, 0.25);
+
     --chart-wrapper-bg: #f8f9fa;
     --chart-grid-line: rgba(0, 0, 0, 0.15);
     --chart-bar-separator: rgba(0, 0, 0, 0.15);
     --chart-legend-border: #dee2e6;
 
     --statistics-tabs-border: #e9ecef;
-    --statistics-tabs-color: #6c757d;
+    --statistics-tabs-color: var(--neutral-gray);
     --statistics-tabs-hover: #495057;
     --statistics-tabs-hover-border: #dee2e6;
 
@@ -51,9 +60,11 @@
    CSS-переменные: тёмная тема
    ============================================ */
 [data-theme="dark"] {
+    --neutral-gray: #9ca3af;
+
     --body-bg: #0f1117;
     --body-color: #d1d5db;
-    --body-muted: #9ca3af;
+    --body-muted: var(--neutral-gray);
 
     --card-bg: #1a1d27;
     --card-border: rgba(255, 255, 255, 0.08);
@@ -63,6 +74,7 @@
 
     --navbar-bg: #111827;
     --navbar-dropdown-bg: #1f2937;
+    --navbar-hover-color: #a7b0c0;
 
     --footer-bg: #111827;
     --footer-color: rgba(255, 255, 255, 0.7);
@@ -76,13 +88,18 @@
     --input-border: rgba(255, 255, 255, 0.15);
     --input-addon-bg: #374151;
 
+    --action-color: #8ea4c3;
+    --action-hover-color: #c7d2fe;
+    --action-hover-bg: rgba(129, 140, 248, 0.14);
+    --action-focus-ring: rgba(129, 140, 248, 0.35);
+
     --chart-wrapper-bg: #1a1d27;
     --chart-grid-line: rgba(255, 255, 255, 0.08);
     --chart-bar-separator: rgba(255, 255, 255, 0.08);
     --chart-legend-border: rgba(255, 255, 255, 0.1);
 
     --statistics-tabs-border: rgba(255, 255, 255, 0.1);
-    --statistics-tabs-color: #9ca3af;
+    --statistics-tabs-color: var(--neutral-gray);
     --statistics-tabs-hover: #d1d5db;
     --statistics-tabs-hover-border: rgba(255, 255, 255, 0.2);
 
@@ -118,6 +135,267 @@ body {
     background-color: var(--body-bg);
     color: var(--body-color);
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================
+   Нейтральный серый: .text-muted, плейсхолдеры, подсказки, Kartik
+   (переменная --neutral-gray в :root / [data-theme="dark"])
+   ============================================ */
+.text-muted {
+    color: var(--neutral-gray) !important;
+}
+
+.form-control::placeholder,
+.form-select::placeholder,
+textarea.form-control::placeholder,
+input.form-control::placeholder,
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="number"]::placeholder,
+input[type="search"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="url"]::placeholder,
+input[type="datetime-local"]::placeholder,
+input[type="date"]::placeholder,
+input[type="time"]::placeholder {
+    color: var(--neutral-gray) !important;
+    opacity: 1 !important;
+}
+
+/* Любые поля с плейсхолдером (Kartik DatePicker и др., без перечисления type) */
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"])::placeholder,
+textarea::placeholder,
+.input-group .form-control::placeholder {
+    color: var(--neutral-gray) !important;
+    opacity: 1 !important;
+}
+
+/* Нативный <select>: prompt — первая опция с value="", не ::placeholder */
+select.form-control:has(> option:checked[value=""]),
+select.form-select:has(> option:checked[value=""]),
+select:not([multiple]):has(> option:checked[value=""]) {
+    color: var(--neutral-gray) !important;
+}
+
+/* Select2: строка поиска в выпадашке */
+.select2-container .select2-search__field::placeholder {
+    color: var(--neutral-gray) !important;
+    opacity: 1 !important;
+}
+
+/*
+ * Select2: пока выбран только placeholder — Kartik задаёт цвет на __rendered с высокой специфичностью.
+ * Ставим нейтральный на контейнер (:has) и наследование на внутренний span.
+ */
+.select2-container .select2-selection__rendered:has(.select2-selection__placeholder) {
+    color: var(--neutral-gray) !important;
+}
+
+.select2-container .select2-selection__rendered .select2-selection__placeholder {
+    color: inherit !important;
+    opacity: 1 !important;
+}
+
+.kv-help-block,
+.kv-hint,
+.kv-hint-block,
+.kv-panel-before,
+.kv-panel-after,
+.kv-field-hint,
+.kv-sbs-hint {
+    color: var(--neutral-gray) !important;
+}
+
+.form-text:not(.invalid-feedback):not(.valid-feedback):not(.text-danger) {
+    color: var(--neutral-gray) !important;
+}
+
+/* ============================================
+   Тёмная тема: системные контролы и GridView
+   ============================================ */
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="date"],
+[data-theme="dark"] input[type="time"],
+[data-theme="dark"] input[type="datetime-local"],
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+    color-scheme: dark;
+}
+
+[data-theme="dark"] input[type="number"]::-webkit-inner-spin-button,
+[data-theme="dark"] input[type="number"]::-webkit-outer-spin-button {
+    background-color: var(--input-bg);
+    color: var(--input-color);
+}
+
+.grid-view .action-column,
+.table-responsive .action-column,
+.grid-view .table tbody td:last-child,
+.table-responsive .table tbody td:last-child {
+    white-space: nowrap;
+}
+
+.grid-view .action-column a,
+.grid-view .table thead th a,
+.grid-view .table thead th a.asc,
+.grid-view .table thead th a.desc,
+.table-responsive .action-column a,
+.table-responsive .table thead th a,
+.table-responsive .table thead th a.asc,
+.table-responsive .table thead th a.desc,
+.grid-view .table tbody td:last-child a,
+.table-responsive .table tbody td:last-child a {
+    color: var(--action-color) !important;
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.grid-view .action-column a,
+.table-responsive .action-column a,
+.grid-view .table tbody td:last-child a,
+.table-responsive .table tbody td:last-child a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    min-height: 1.75rem;
+    border-radius: 0.375rem;
+    padding: 0.25rem;
+}
+
+.grid-view .action-column a:hover,
+.grid-view .action-column a:focus,
+.grid-view .table thead th a:hover,
+.grid-view .table thead th a:focus,
+.grid-view .table thead th a.asc,
+.grid-view .table thead th a.desc,
+.table-responsive .action-column a:hover,
+.table-responsive .action-column a:focus,
+.table-responsive .table thead th a:hover,
+.table-responsive .table thead th a:focus,
+.table-responsive .table thead th a.asc,
+.table-responsive .table thead th a.desc,
+.grid-view .table tbody td:last-child a:hover,
+.grid-view .table tbody td:last-child a:focus,
+.table-responsive .table tbody td:last-child a:hover,
+.table-responsive .table tbody td:last-child a:focus {
+    color: var(--action-hover-color) !important;
+}
+
+.grid-view .action-column a:hover,
+.grid-view .action-column a:focus,
+.table-responsive .action-column a:hover,
+.table-responsive .action-column a:focus,
+.grid-view .table tbody td:last-child a:hover,
+.grid-view .table tbody td:last-child a:focus,
+.table-responsive .table tbody td:last-child a:hover,
+.table-responsive .table tbody td:last-child a:focus {
+    background-color: var(--action-hover-bg);
+}
+
+.grid-view .action-column a:focus,
+.grid-view .table thead th a:focus,
+.table-responsive .action-column a:focus,
+.table-responsive .table thead th a:focus,
+.grid-view .table tbody td:last-child a:focus,
+.table-responsive .table tbody td:last-child a:focus {
+    outline: 2px solid var(--action-focus-ring);
+    outline-offset: 2px;
+}
+
+.grid-view .action-column a .glyphicon,
+.table-responsive .action-column a .glyphicon,
+.grid-view .table tbody td:last-child a .glyphicon,
+.table-responsive .table tbody td:last-child a .glyphicon {
+    color: inherit !important;
+}
+
+.grid-view .table thead th a,
+.table-responsive .table thead th a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.grid-view .table thead th a[data-sort]::after,
+.table-responsive .table thead th a[data-sort]::after {
+    content: "↕";
+    color: var(--action-color);
+    font-size: 0.75rem;
+    line-height: 1;
+    opacity: 0.55;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.grid-view .table thead th a.asc::after,
+.grid-view .table thead th.asc a::after,
+.table-responsive .table thead th a.asc::after,
+.table-responsive .table thead th.asc a::after {
+    content: "↑";
+    color: var(--action-hover-color);
+    opacity: 1;
+}
+
+.grid-view .table thead th a.desc::after,
+.grid-view .table thead th.desc a::after,
+.table-responsive .table thead th a.desc::after,
+.table-responsive .table thead th.desc a::after {
+    content: "↓";
+    color: var(--action-hover-color);
+    opacity: 1;
+}
+
+.grid-view .table thead th a:hover::after,
+.grid-view .table thead th a:focus::after,
+.table-responsive .table thead th a:hover::after,
+.table-responsive .table thead th a:focus::after {
+    color: var(--action-hover-color);
+    opacity: 1;
+}
+
+.grid-view .filters .form-control:focus,
+.grid-view .filters .form-select:focus,
+.grid-view .filters select:focus,
+.grid-view .filters input:focus,
+.table-responsive .filters .form-control:focus,
+.table-responsive .filters .form-select:focus,
+.table-responsive .filters select:focus,
+.table-responsive .filters input:focus {
+    border-color: var(--action-color) !important;
+    box-shadow: 0 0 0 0.2rem var(--action-focus-ring) !important;
+}
+
+.grid-view .filters select.form-control:has(> option:checked[value=""]),
+.grid-view .filters select.form-select:has(> option:checked[value=""]),
+.grid-view .filters select:not([multiple]):has(> option:checked[value=""]),
+.table-responsive .filters select.form-control:has(> option:checked[value=""]),
+.table-responsive .filters select.form-select:has(> option:checked[value=""]),
+.table-responsive .filters select:not([multiple]):has(> option:checked[value=""]) {
+    color: var(--neutral-gray) !important;
+}
+
+.grid-view .pagination .page-link,
+.table-responsive .pagination .page-link {
+    color: var(--action-color) !important;
+    border-color: var(--card-border) !important;
+}
+
+.grid-view .pagination .page-link:hover,
+.grid-view .pagination .page-link:focus,
+.table-responsive .pagination .page-link:hover,
+.table-responsive .pagination .page-link:focus {
+    color: var(--action-hover-color) !important;
+    background-color: var(--action-hover-bg) !important;
+    border-color: var(--action-color) !important;
+    box-shadow: 0 0 0 0.2rem var(--action-focus-ring) !important;
+}
+
+.grid-view .pagination .active .page-link,
+.table-responsive .pagination .active .page-link {
+    color: var(--action-hover-color) !important;
+    background-color: var(--action-hover-bg) !important;
+    border-color: var(--action-color) !important;
 }
 
 .wrap {
@@ -189,7 +467,7 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
-    color: #3498db !important;
+    color: var(--navbar-hover-color) !important;
 }
 
 .navbar-nav .logout {
@@ -199,7 +477,7 @@ body {
 }
 
 .navbar-nav .logout:hover {
-    color: #3498db !important;
+    color: var(--navbar-hover-color) !important;
     background: none;
 }
 
@@ -216,8 +494,8 @@ body {
 }
 
 .navbar-nav .dropdown-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--navbar-hover-color);
 }
 
 .navbar-nav .dropdown-divider {
@@ -715,7 +993,7 @@ body {
 .hint-block {
     display: block;
     margin-top: 5px;
-    color: #999;
+    color: var(--neutral-gray);
 }
 
 .error-summary {
@@ -1133,11 +1411,6 @@ textarea {
     border-color: var(--input-border) !important;
 }
 
-[data-theme="dark"] .form-control::placeholder,
-[data-theme="dark"] input::placeholder {
-    color: var(--body-muted) !important;
-}
-
 [data-theme="dark"] .input-group-text,
 [data-theme="dark"] .input-group-addon {
     background-color: var(--input-addon-bg) !important;
@@ -1158,6 +1431,11 @@ textarea {
 [data-theme="dark"] .dropdown-item:focus {
     background-color: rgba(255, 255, 255, 0.08);
     color: #ffffff;
+}
+
+[data-theme="dark"] .navbar-nav .dropdown-item:hover,
+[data-theme="dark"] .navbar-nav .dropdown-item:focus {
+    color: var(--navbar-hover-color);
 }
 
 [data-theme="dark"] .dropdown-divider {
@@ -1181,10 +1459,6 @@ textarea {
 
 [data-theme="dark"] .table-hover > tbody > tr:hover > * {
     background-color: rgba(255, 255, 255, 0.06);
-}
-
-[data-theme="dark"] .text-muted {
-    color: var(--body-muted) !important;
 }
 
 [data-theme="dark"] .border,
@@ -1322,40 +1596,161 @@ textarea {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Select2 в тёмной теме */
-[data-theme="dark"] .select2-container {
+/* Select2 / Kartik: тёмная тема (стили виджета грузятся после site.css — нужны !important и вложенные селекторы) */
+html[data-theme="dark"] .select2-container {
     width: 100% !important;
 }
 
-[data-theme="dark"] .select2-container--krajee .select2-selection {
+html[data-theme="dark"] .select2-container .select2-selection {
     background-color: var(--input-bg) !important;
+    background-image: none !important;
     border-color: var(--input-border) !important;
-}
-
-[data-theme="dark"] .select2-container--krajee .select2-selection--single .select2-selection__rendered {
     color: var(--input-color) !important;
 }
 
-[data-theme="dark"] .select2-dropdown {
-    background-color: var(--card-bg) !important;
-    border-color: var(--card-border) !important;
+html[data-theme="dark"] .select2-container .select2-selection--single,
+html[data-theme="dark"] .select2-container .select2-selection--multiple {
+    background-color: var(--input-bg) !important;
+    background-image: none !important;
+    border-color: var(--input-border) !important;
 }
 
-[data-theme="dark"] .select2-results__option {
+html[data-theme="dark"] .select2-container .select2-selection__rendered {
+    color: var(--input-color) !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+html[data-theme="dark"] .select2-container .select2-selection__rendered:has(.select2-selection__placeholder) {
+    color: var(--neutral-gray) !important;
+}
+
+html[data-theme="dark"] .select2-container .select2-selection__clear {
+    color: var(--body-muted) !important;
+}
+
+html[data-theme="dark"] .select2-container .select2-selection__arrow b {
+    border-color: var(--body-muted) transparent transparent transparent !important;
+}
+
+html[data-theme="dark"] .select2-container.select2-container--disabled .select2-selection,
+html[data-theme="dark"] .select2-container--disabled .select2-selection {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    color: var(--body-muted) !important;
+    opacity: 0.9;
+    cursor: not-allowed;
+}
+
+html[data-theme="dark"] .select2-dropdown {
+    background-color: var(--card-bg) !important;
+    background-image: none !important;
+    border-color: var(--card-border) !important;
     color: var(--body-color) !important;
 }
 
-[data-theme="dark"] .select2-results__option--highlighted {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+html[data-theme="dark"] .select2-search--dropdown {
+    background-color: var(--card-bg) !important;
 }
 
-[data-theme="dark"] .input-group-addon.kv-date-picker,
-[data-theme="dark"] .input-group-addon.kv-date-remove,
-[data-theme="dark"] .input-group-text.kv-date-picker,
-[data-theme="dark"] .input-group-text.kv-date-remove {
+html[data-theme="dark"] .select2-search--dropdown .select2-search__field {
+    background-color: var(--input-bg) !important;
+    color: var(--input-color) !important;
+    border-color: var(--input-border) !important;
+}
+
+html[data-theme="dark"] .select2-results__options {
+    background-color: var(--card-bg) !important;
+}
+
+html[data-theme="dark"] .select2-results__option {
+    color: var(--body-color) !important;
+    background-color: transparent !important;
+}
+
+html[data-theme="dark"] .select2-results__option--highlighted,
+html[data-theme="dark"] .select2-results__option--highlighted.select2-results__option[aria-selected] {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: var(--body-color) !important;
+}
+
+html[data-theme="dark"] .select2-results__option[aria-selected="true"] {
+    background-color: rgba(13, 110, 253, 0.35) !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .select2-results__option--selected {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .select2-results__group {
+    color: var(--body-muted) !important;
+    background-color: transparent !important;
+}
+
+html[data-theme="dark"] .select2-container .select2-selection--multiple .select2-selection__choice {
+    background-color: var(--input-addon-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--input-color) !important;
+}
+
+html[data-theme="dark"] .select2-container .select2-selection--multiple .select2-selection__choice__remove {
+    color: var(--body-muted) !important;
+    border-right-color: var(--input-border) !important;
+}
+
+html[data-theme="dark"] .select2-container .select2-selection--multiple .select2-selection__choice__remove:hover {
+    color: var(--body-color) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html[data-theme="dark"] .select2-container--focus .select2-selection,
+html[data-theme="dark"] .select2-container--open .select2-selection {
+    border-color: rgba(129, 140, 248, 0.75) !important;
+}
+
+html[data-theme="dark"] .input-group-addon.kv-date-picker,
+html[data-theme="dark"] .input-group-addon.kv-date-remove,
+html[data-theme="dark"] .input-group-text.kv-date-picker,
+html[data-theme="dark"] .input-group-text.kv-date-remove {
     background-color: var(--input-addon-bg) !important;
     border-color: var(--input-border) !important;
     color: var(--body-color) !important;
+}
+
+/* Bootstrap Datepicker (Kartik DatePicker): выпадающий календарь */
+html[data-theme="dark"] .datepicker,
+html[data-theme="dark"] .datepicker-dropdown {
+    background-color: var(--card-bg) !important;
+    color: var(--body-color) !important;
+    border-color: var(--card-border) !important;
+}
+
+html[data-theme="dark"] .datepicker table tr th,
+html[data-theme="dark"] .datepicker table tr td {
+    color: var(--body-color) !important;
+}
+
+html[data-theme="dark"] .datepicker table tr td.day:hover,
+html[data-theme="dark"] .datepicker table tr td.day.focused {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html[data-theme="dark"] .datepicker table tr td.old,
+html[data-theme="dark"] .datepicker table tr td.new {
+    color: var(--body-muted) !important;
+}
+
+html[data-theme="dark"] .datepicker table tr td.active,
+html[data-theme="dark"] .datepicker table tr td.active:hover,
+html[data-theme="dark"] .datepicker table tr td.active.disabled,
+html[data-theme="dark"] .datepicker table tr td.active.disabled:hover {
+    background-color: #0d6efd !important;
+    background-image: none !important;
+    color: #fff !important;
+}
+
+html[data-theme="dark"] .datepicker table tr td.today::before {
+    border-bottom-color: var(--body-muted) !important;
 }
 
 .select2-container--krajee .select2-selection {
@@ -1377,4 +1772,14 @@ textarea {
     display: flex !important;
     align-items: center !important;
     height: 100% !important;
+    font-size: 0.875rem !important;
+    font-family: inherit !important;
+    font-weight: 400 !important;
+}
+
+/* Типографика плейсхолдера Select2; цвет задаётся через :has(.select2-selection__placeholder) выше */
+.select2-container--krajee .select2-selection__placeholder {
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: 400 !important;
 }
